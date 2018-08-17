@@ -202,7 +202,7 @@ class Fiction(Book):
         """
         Returns a human readable message with the title and author of the instance.
         """
-        return "{title} by {author}".format(title=self.title,author=self.author)
+        return "{title} by {author} for ${price}".format(title=self.title,author=self.author,price=self.price)
 
     def get_author(self):
         """
@@ -229,7 +229,7 @@ class Non_Fiction(Book):
         Returns a human readable message with the title, level, and subject of the
         instance.
         """
-        return "{title}, a {level} manual on {subject}".format(title=self.title,level=self.level,subject=self.subject)
+        return "{title}, a {level} manual on {subject} for ${price}".format(title=self.title,level=self.level,subject=self.subject,price=self.price)
 
     def get_subject(self):
         """
@@ -279,7 +279,7 @@ class TomeRater(object):
             print("Object on the right side of the equality is of type {type}, and should be of type TomeRater".format(type=type(other_rater)))
 
 
-    def create_book(self, title, isbn), price:
+    def create_book(self, title, isbn, price):
         """
         Returns an instance of a Books object.
         """
