@@ -25,7 +25,7 @@ class User(object):
         cnt = 0
         for item in self.books.keys():
             cnt += 1
-        return "User {name} with email {email} has read {count} books with an average rating of {rating}".format(name=self.name,email=self.email,count=cnt,rating=self.get_average_rating())
+        return "User {name} with email {email} has read {count} book(s) with an average rating of {rating}".format(name=self.name,email=self.email,count=cnt,rating=self.get_average_rating())
 
     def __eq__(self, other_user):
         """
@@ -89,6 +89,7 @@ class User(object):
                     n += 1
                 else:
                     continue
+        if n > 0:
             return total/n
         else:
             print("There are no books with ratings for {user}".format(user=self.name))
@@ -328,7 +329,7 @@ class TomeRater(object):
         Creates a new user instance with name and email. Then, loops thorugh
         books, if provided, and calls add_book_to_user on each.
         """
-        if email.find("@") > 0 or email.find(".com") > 0 or email.find(".edu") > 0 or email.find(".org") > 0:
+        if email.find("@") == 0 or email.find(".com") == 0 or email.find(".edu") == 0 or email.find(".org") == 0:
             print("The eamil {email} is invalid, please ensure it has an @ and a .com, .edu, or .org domain.".format(email=email))
         else:
             user = self.users.get(email)
@@ -349,7 +350,7 @@ class TomeRater(object):
 
     def print_users(self):
         """
-        Prints all of the users in the self.books dictionary.
+        Prints all of the users in the self.users dictionary.
         """
         for user in self.users.values():
             print(user)
@@ -435,7 +436,7 @@ class TomeRater(object):
         Determines the total price of all books read by the user associated
         with the user_email argument.
         """
-        if user_email.find("@") > 0 or user_email.find(".com") > 0 or user_email.find(".edu") > 0 or user_email.find(".org") > 0:
+        if user_email.find("@") == 0 or user_email.find(".com") == 0 or user_email.find(".edu") == 0 or user_email.find(".org") == 0:
             print("The {email} is invalid, please ensure it has an @ and a .com, .edu, or .org domain.".format(email=user_email))
         else:
             user = self.users.get(user_email)
