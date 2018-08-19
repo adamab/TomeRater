@@ -10,8 +10,8 @@ class User(object):
         arguments passed. Creates an empty dictionary of books to be populated
         through the read_book method.
         """
-        if email.find("@") > 0 or email.find(".com") > 0 or email.find(".edu") > 0 or email.find(".org") > 0:
-            print("The {email} is invalid, please ensure it has an @ and a .com, .edu, or .org domain.".format(email=email))
+        if email.find("@") == 0 or email.find(".com") == 0 or email.find(".edu") == 0 or email.find(".org") == 0:
+            print("The email {email} is invalid, please ensure it has an @ and a .com, .edu, or .org domain.".format(email=email))
         else:
             self.name = name
             self.email = email
@@ -55,7 +55,7 @@ class User(object):
         Alters the email based on the argument passed, and prints a human
         readable messeage to indicate the changes made.
         """
-        if address.find("@") > 0 or address.find(".com") > 0 or address.find(".edu") > 0 or address.find(".org") > 0:
+        if address.find("@") == 0 or address.find(".com") == 0 or address.find(".edu") == 0 or address.find(".org") == 0:
             print("The eamil {email} is invalid, please ensure it has an @ and a .com, .edu, or .org domain.".format(email=address))
         else:
             old_email = self.email
@@ -273,7 +273,7 @@ class TomeRater(object):
         __eq__ property of dictionaries for books and users between two
         TomeRater instances.
         """
-        if isinstance(other_book, TomeRater):
+        if isinstance(other_rater, TomeRater):
             return self.books == other_rater.books and self.users == other_rater.users
         else:
             print("Object on the right side of the equality is of type {type}, and should be of type TomeRater".format(type=type(other_rater)))
@@ -360,7 +360,7 @@ class TomeRater(object):
         """
         max_reading = 0
         max_book = ""
-        for book, reading in self.books.iteritems():
+        for book, reading in self.books.items():
             if reading > max_reading:
                 max_book = book
                 max_reading = reading
@@ -403,8 +403,8 @@ class TomeRater(object):
         Returns the n books which have been read the most in descending order.
         """
         if type(n) == int:
-            books_sorted = sorted(self.books.iteritems(), key=lambda (k,v): (v,k), reverse=True)
-            return books_sorted.keys()[:n]
+            books_sorted = sorted(self.books.items(), key=lambda k,v: (v,k), reverse=True)
+            return books_sorted[:n]
         else:
             print("The argument n = {n} is not of type int. Please pass an int.".format(n=n))
 
@@ -414,8 +414,8 @@ class TomeRater(object):
         """
         if type(n) == int:
             readers = {reader: reader.get_books_read() for reader in self.users.values()}
-            readers_sorted = sorted(readers.iteritems(), key=lambda (k,v): (v,k), reverse=True)
-            return readers_sorted.keys()[:n]
+            readers_sorted = sorted(readers.items(), key=lambda k,v: (v,k), reverse=True)
+            return readers_sorted[:n]
         else:
             print("The argument n = {n} is not of type int. Please pass an int.".format(n=n))
 
@@ -425,8 +425,8 @@ class TomeRater(object):
         """
         if type(n) == int:
             books = {book: book.get_price() for book in self.books.keys()}
-            books_sorted = sorted(readers.iteritems(), key=lambda (k,v): (v,k), reverse=True)
-            return books_sorted.keys()[:n]
+            books_sorted = sorted(books.items(), key=lambda k,v: (v,k), reverse=True)
+            return books_sorted[:n]
         else:
             print("The argument n = {n} is not of type int. Please pass an int.".format(n=n))
 

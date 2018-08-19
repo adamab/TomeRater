@@ -46,9 +46,9 @@ print("Testing user1 instance: Beatriz Rodriguez, Bella@last.org")
 print(user1.name, user1.email, user1.books, sep=" , ")
 print(user1)
 print("Testing equality of user1 and user2: False")
-user1 == user2
+print(user1 == user2)
 print("Testing equality of user1 and user3: True")
-user1 == user3
+print(user1 == user3)
 print("Testing get_email user1: Beatriz Rodriguez")
 print(user1.get_email())
 print("Testing change_email user2: xiomei@that.org")
@@ -66,9 +66,9 @@ print("Begin books testing\n")
 print("Testing book1 instance: The Book, 123789, 14")
 print(book1.title, book1.isbn, book1.price, sep=" , ")
 print("Testing equality of user1 and user2: False")
-book1 == book2
+print(book1 == book2)
 print("Testing equality of user1 and user3: True")
-book3 == book4
+print(book3 == book4)
 print("Testing book as dictionary key: book5: success")
 dict1 = {book5: "success"}
 print(dict1)
@@ -95,9 +95,9 @@ print(fiction1)
 print("Testing get_author fiction1: Jim Crowed")
 print(fiction1.get_author())
 print("Testing equality of fiction1 and fiction2: False")
-fiction1 == fiction2
+print(fiction1 == fiction2)
 print("Testing equality of fiction4 and fiction5: True")
-fiction4 == fiction5
+print(fiction4 == fiction5)
 
 print("Begin non fiction testing\n")
 print("Testing non_fiction1 instance: Python for Dummies, 111999, Beginner, Programming, 22.9")
@@ -109,19 +109,19 @@ print(non_fiction1.get_subject())
 print("Testing get_level non_fiction1: Beginner")
 print(non_fiction1.get_level())
 print("Testing equality of non_fiction1 and non_fiction2: False")
-non_fiction1 == non_fiction2
+print(non_fiction1 == non_fiction2)
 print("Testing equality of non_fiction1 and non_fiction3: True")
-non_fiction1 == non_fiction3
+print(non_fiction1 == non_fiction3)
 
 print("Begin tomerater testing\n")
 print("Testing tomerater1 instance")
 print(tomerater1.users, tomerater1.books, sep=" , ")
 print("Testing tomeraterbook1 equal to book2: True")
-tomeraterbook1 == book2
+print(tomeraterbook1 == book2)
 print("Testing tomeraternovel1 equal to fiction1: True")
-tomeraternovel1 == fiction1
+print(tomeraternovel1 == fiction1)
 print("Testing tomeraternon_fiction1 equal to non_fiction1: True")
-tomeraternon_fiction1 == non_fiction1
+print(tomeraternon_fiction1 == non_fiction1)
 print("Testing add_user tomerater1: Beatriz Rodriguez, Bella@last.org, The Book, Henry Book")
 tomerater1.add_user("Beatriz Rodriguez", "Bella@last.org", [book1, book5])
 print(tomerater1.users, tomerater1.books, sep=" , ")
@@ -166,11 +166,11 @@ print(tomerater3.get_n_most_expensive_books(2))
 print("Testing string representation tomerater1: This TomeRater has 2 book(s) and 1 user(s). \nWith That Book being read the most, That Book having the highest average rating,\nand Beatriz Rodriguez giving the most positive reviews.")
 print(tomerater1)
 print("Testing tomerater1 equal to tomerater2: False")
-tomerater1 == tomerater2
+print(tomerater1 == tomerater2)
 print("Testing tomerater1 equal to tomerater4: True")
 tomerater4.add_user("Beatriz Rodriguez", "Bella@last.org", [book1, book5])
 tomerater4.add_book_to_user(tomeraterbook1, "Bella@last.org")
-tomerater1 == tomerater4
+print(tomerater1 == tomerater4)
 print("Testing existing user error handling for user3 tomerater3: User Jenny Parque currently exists with email jenny.from@theblock.org. Please use a different email.")
 tomerater3.add_user("Jenny Parqua", "jenny.from@theblock.org")
 print("Testing existing isbn error handling for all book types tomerater3")
