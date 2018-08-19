@@ -265,7 +265,7 @@ class TomeRater(object):
         highest_rated = self.highest_rated_book()
         most_positive = self.most_positive_user()
 
-        return "This TomeRater has {books} books and {users} users.\nWith {most_read} being read the most, {highest} having the highest average rating,\nand {most_positive} giving the most positive reviews.".format(books=n_books,users=n_users,most_read=most_read,highest=highest_rated,most_positive=most_positive)
+        return "This TomeRater has {books} book(s) and {users} user(s).\nWith {most_read} being read the most, {highest} having the highest average rating,\nand {most_positive} giving the most positive reviews.".format(books=n_books,users=n_users,most_read=most_read,highest=highest_rated,most_positive=most_positive)
 
     def __eq__(self, other_rater):
         """
