@@ -56,7 +56,7 @@ class User(object):
         readable messeage to indicate the changes made.
         """
         if address.find("@") > 0 or address.find(".com") > 0 or address.find(".edu") > 0 or address.find(".org") > 0:
-            print("The {email} is invalid, please ensure it has an @ and a .com, .edu, or .org domain.".format(email=address))
+            print("The eamil {email} is invalid, please ensure it has an @ and a .com, .edu, or .org domain.".format(email=address))
         else:
             old_email = self.email
             self.email = address
@@ -293,13 +293,21 @@ class TomeRater(object):
         """
         Returns an instance of a Fiction object.
         """
-        return Fiction(title, isbn, author, price)
+        isbns = [book for book in self.books.keys()]
+        if isbn in isbns:
+            print("The isbn {isbn} already exists for another book. Please give a unique isbn.".format(isbn=isbn))
+        else:
+            return Fiction(title, isbn, author, price)
 
     def create_non_fiction(self, title, level, subject, isbn, price):
         """
         Returns an instance of a Non_Fiction object.
         """
-        return Non_Fiction(title, isbn, subject, level, price)
+        isbns = [book for book in self.books.keys()]
+        if isbn in isbns:
+            print("The isbn {isbn} already exists for another book. Please give a unique isbn.".format(isbn=isbn))
+        else:
+            return Non_Fiction(title, isbn, subject, level, price)
 
     def add_book_to_user(self, book, email, rating=None):
         """
@@ -321,7 +329,7 @@ class TomeRater(object):
         books, if provided, and calls add_book_to_user on each.
         """
         if email.find("@") > 0 or email.find(".com") > 0 or email.find(".edu") > 0 or email.find(".org") > 0:
-            print("The {email} is invalid, please ensure it has an @ and a .com, .edu, or .org domain.".format(email=email))
+            print("The eamil {email} is invalid, please ensure it has an @ and a .com, .edu, or .org domain.".format(email=email))
         else:
             user = self.users.get(email)
             if user:
