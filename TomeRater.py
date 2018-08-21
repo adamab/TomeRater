@@ -10,7 +10,7 @@ class User(object):
         arguments passed. Creates an empty dictionary of books to be populated
         through the read_book method.
         """
-        if email.find("@") == 0 or email.find(".com") == 0 or email.find(".edu") == 0 or email.find(".org") == 0:
+        if email.find("@") == -1 or (email.find(".com") == -1 and email.find(".edu") == -1 and email.find(".org") == -1):
             print("The email {email} is invalid, please ensure it has an @ and a .com, .edu, or .org domain.".format(email=email))
         else:
             self.name = name
@@ -55,7 +55,7 @@ class User(object):
         Alters the email based on the argument passed, and prints a human
         readable messeage to indicate the changes made.
         """
-        if address.find("@") == 0 or address.find(".com") == 0 or address.find(".edu") == 0 or address.find(".org") == 0:
+        if address.find("@") == -1 or address.find(".com") == -1 or address.find(".edu") == -1 or address.find(".org") == -1:
             print("The eamil {email} is invalid, please ensure it has an @ and a .com, .edu, or .org domain.".format(email=address))
         else:
             old_email = self.email
@@ -284,7 +284,7 @@ class TomeRater(object):
         """
         Returns an instance of a Books object.
         """
-        isbns = [book for book in self.books.keys()]
+        isbns = [book.get_isbn() for book in self.books.keys()]
         if isbn in isbns:
             print("The isbn {isbn} already exists for another book. Please give a unique isbn.".format(isbn=isbn))
         else:
@@ -294,7 +294,7 @@ class TomeRater(object):
         """
         Returns an instance of a Fiction object.
         """
-        isbns = [book for book in self.books.keys()]
+        isbns = [book.get_isbn() for book in self.books.keys()]
         if isbn in isbns:
             print("The isbn {isbn} already exists for another book. Please give a unique isbn.".format(isbn=isbn))
         else:
@@ -304,7 +304,7 @@ class TomeRater(object):
         """
         Returns an instance of a Non_Fiction object.
         """
-        isbns = [book for book in self.books.keys()]
+        isbns = [book.get_isbn() for book in self.books.keys()]
         if isbn in isbns:
             print("The isbn {isbn} already exists for another book. Please give a unique isbn.".format(isbn=isbn))
         else:
@@ -329,7 +329,7 @@ class TomeRater(object):
         Creates a new user instance with name and email. Then, loops thorugh
         books, if provided, and calls add_book_to_user on each.
         """
-        if email.find("@") == 0 or email.find(".com") == 0 or email.find(".edu") == 0 or email.find(".org") == 0:
+        if email.find("@") == -1 or (email.find(".com") == -1 and email.find(".edu") == -1 and email.find(".org") == -1):
             print("The eamil {email} is invalid, please ensure it has an @ and a .com, .edu, or .org domain.".format(email=email))
         else:
             user = self.users.get(email)
@@ -404,7 +404,7 @@ class TomeRater(object):
         Returns the n books which have been read the most in descending order.
         """
         if type(n) == int:
-            books_sorted = sorted(self.books.items(), key=lambda k,v: (v,k), reverse=True)
+            books_sorted = [k for k in sorted(self.books, key=self.books.get, reverse=True)]
             return books_sorted[:n]
         else:
             print("The argument n = {n} is not of type int. Please pass an int.".format(n=n))
@@ -414,8 +414,8 @@ class TomeRater(object):
         Returns the n readers which have read the most books in descending order.
         """
         if type(n) == int:
-            readers = {reader: reader.get_books_read() for reader in self.users.values()}
-            readers_sorted = sorted(readers.items(), key=lambda k,v: (v,k), reverse=True)
+            readers = [(reader, reader.get_books_read()) for reader in self.users.values()]
+            readers_sorted = [k[0] for k in sorted(readers, key=lambda reader: reader[1], reverse=True)]
             return readers_sorted[:n]
         else:
             print("The argument n = {n} is not of type int. Please pass an int.".format(n=n))
@@ -426,7 +426,7 @@ class TomeRater(object):
         """
         if type(n) == int:
             books = {book: book.get_price() for book in self.books.keys()}
-            books_sorted = sorted(books.items(), key=lambda k,v: (v,k), reverse=True)
+            books_sorted = [k for k in sorted(books, key=books.get, reverse=True)]
             return books_sorted[:n]
         else:
             print("The argument n = {n} is not of type int. Please pass an int.".format(n=n))
@@ -436,7 +436,7 @@ class TomeRater(object):
         Determines the total price of all books read by the user associated
         with the user_email argument.
         """
-        if user_email.find("@") == 0 or user_email.find(".com") == 0 or user_email.find(".edu") == 0 or user_email.find(".org") == 0:
+        if user_email.find("@") == -1 or (user_email.find(".com") == -1 and user_email.find(".edu") == -1 and user_email.find(".org") == -1):
             print("The {email} is invalid, please ensure it has an @ and a .com, .edu, or .org domain.".format(email=user_email))
         else:
             user = self.users.get(user_email)
